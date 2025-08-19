@@ -1,0 +1,84 @@
+import {ArticleLayout} from '@/components/ArticleLayout'
+
+export const article = {
+    author: 'Irving Dinh',
+    date: '2025-08-20',
+    title: 'My Humble Home Lab in Vietnam',
+    description: "My cloud bills for side projects were getting out of hand, so I took the leap and built a powerful home lab right here in Vietnam. In this post, I share how I replaced my expensive DigitalOcean droplets with a beastly mini-PC, run my own k3s clusters, and learned some wild lessons along the way (including one involving my dad's solar panels!)."
+}
+
+export const metadata = {
+    title: article.title,
+    description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Hey everyone, welcome to my first blog post!
+
+For the longest time, my side projects, experiments, and wild ideas all lived on DigitalOcean. It was convenient, but the monthly bills started to add up. I was paying around $40 a month for a small droplet (4 CPUs, 8GB RAM, 500GB SSD), which felt restrictive and expensive for what was essentially a digital playground. I also dreamed of having more flexibility - like running a full Windows 11 VM or even firing up a local server with a GPU for some AI/LLM experiments.
+
+That's when I decided to take the plunge and build my own home lab right here in Vietnam. I wanted to share my journey, the setup, and some of the unexpected lessons I learned along the way. This is for my fellow software engineers and anyone curious about building a powerful, cost-effective alternative to the cloud.
+
+## The Heart of the Lab: Hardware & Core Setup
+
+My goal was to get the most bang for my buck with a small footprint. I settled on a mini-PC that packs a serious punch:
+
+* Machine: An ASUS NUC with an Intel Core Ultra 7 155H processor.
+* Memory: A whopping 96GB of RAM.
+* Storage: A speedy 4TB NVMe SSD.
+* OS: Windows 11 Pro, with Hyper-V enabled to spin up Linux VMs on demand.
+
+This little box gives me an incredible amount of resources to play with, far more than I could ever afford on a typical cloud provider.
+
+## The Magic Glue: Networking and Remote Access
+
+A server is useless if you can't connect to it reliably. This was a top priority for me.
+
+* Primary Internet: I have a 1Gbps fiber connection from FPT, which is my main wired link.
+* Backup Internet: To guard against outages, I have a second 1Gbps connection from Viettel, connected via Wi-Fi. If the main line goes down, the lab stays online.
+* Remote Access: Tailscale is the absolute star of the show here. It creates a secure private network (a mesh VPN) between all my devices - my MacBook, iPhone, PC, and of course, the NUC and all the VMs running on it. This means I can securely access everything from anywhere, without ever exposing a port to the public internet.
+
+## My Software Stack: Kubernetes at Home
+
+Most of my projects are containerized, and I wanted to replicate the environment I'm used to at work.
+
+* VMs: I mostly run Ubuntu Server 24.04.
+* Orchestration: I chose k3s, a lightweight, certified Kubernetes distribution. It's easy to set up and gives me a K8s-native workflow, which helps sharpen my professional skills.
+* Architecture: I take a "one VM per project" approach. Each project, with its containers, lives inside its own dedicated virtual machine. This has two huge benefits:
+1. Isolation: If I mess something up or a project gets compromised, the blast radius is contained to that single VM.
+2. Portability: When an idea is validated and ready for the big leagues, I can easily migrate the entire VM to a cloud provider without untangling it from a shared cluster.
+
+## Public Services without a Static IP
+
+For services that need to be public, I use Cloudflare Tunnel. It creates a secure outbound connection from my k3s ingress controller to the Cloudflare network. This lets me expose web services to the world using a proper domain name without needing a static IP or opening firewall ports. It's brilliant.
+
+For private services, I got tired of remembering IP addresses and ports. So, I set up a small internal DNS server that resolves friendly names like `cms.irving.local`. I configured Tailscale to use this DNS server, so now `cms.irving.local` just works automatically on all my connected devices, even my phone! The DNS server itself is the only piece I still have in the cloud - a tiny $4/month DigitalOcean droplet. It also doubles as my Tailscale exit node, so I can route my traffic through it when I'm on public Wi-Fi.
+
+## The "Aha!" Moments: Unexpected Lessons
+
+Building this wasn't just about following a guide; it was a journey with some surprising twists.
+
+### The Unbeatable Power of... Dad's Solar Setup
+
+I initially set up the NUC in my apartment in Ho Chi Minh City. But, as anyone living here knows, the power grid can be a bit unpredictable with cuts for maintenance. The solution? I moved the entire setup to my parents' house in my hometown. My dad, an electrical engineer, has spent years perfecting his home solar power system. The result? The lab is now plugged into a power source backup system that never goes down. It's the perfect, most unexpected location for a server.
+
+### Always Have a Plan B (and a Second ISP)
+
+After moving the lab, I was managing it completely remotely. One day, the primary wired internet at my parents' house went out. I was completely locked out and had to call my dad to manually restart the router. It was a wake-up call. That's when I added the second wireless internet connection. Now, if the wired connection fails, the server seamlessly fails over to the Wi-Fi. Not only can I still manage it, but any public services running via Cloudflare Tunnel stay online without a hitch.
+
+## So, Was It Worth It? Let's Talk Numbers
+
+This is the best part.
+
+* Initial Setup Cost: Around $1,500 for the NUC and all its components.
+* Previous Monthly Cost: ~$40 on DigitalOcean for a fraction of the power.
+* Current Monthly Cost: $4 for the tiny DNS/exit-node droplet.
+
+The initial investment was significant, but it will pay for itself in just a couple of years. And in return, I have an incredibly powerful and flexible platform for all my current and future projects.
+
+## What's Next?
+
+This is just the beginning of my home lab journey. In a future post, I plan to dive deeper into how I handle backups for my Hyper-V VMs and my approach to monitoring and alerting to make sure everything stays running smoothly.
+
+Thanks for reading! It's been a blast building this, and I'm excited to see what I can create with it.
