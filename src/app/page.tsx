@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import Image, { type ImageProps } from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { Card } from '@/components/Card'
@@ -10,6 +10,7 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
+import { TweetComponent } from '@/components/Tweet'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -17,6 +18,7 @@ import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { type ArticleWithSlug, getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { getTweets } from '@/lib/twitter'
 
 function Article({ article }: { article: ArticleWithSlug }) {
   return (
@@ -74,7 +76,8 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  const articles = (await getAllArticles()).slice(0, 4)
+  const tweets = await getTweets()
 
   return (
     <>
@@ -120,7 +123,34 @@ export default async function Home() {
             ))}
           </div>
 
-          <div className="space-y-10 lg:pl-16 xl:pl-24" />
+          <div className="space-y-10 lg:pl-16 xl:pl-24">
+            <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+              <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                <XIcon className="h-6 w-6 flex-none fill-zinc-500 dark:fill-zinc-400" />
+                <span className="ml-3">
+                  <a href="https://x.com/zenkilies" target="_blank">
+                    @zenkilies
+                  </a>
+                </span>
+              </h2>
+
+              {tweets && tweets.tweets.length > 0 ? (
+                <div className="mt-6 space-y-6">
+                  {tweets.tweets.map((tweet) => (
+                    <TweetComponent
+                      key={tweet.id}
+                      tweet={tweet}
+                      user={tweets.user}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-6 text-sm text-zinc-600 dark:text-zinc-400">
+                  Unable to load tweets at this time.
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       </Container>
     </>
