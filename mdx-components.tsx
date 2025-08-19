@@ -1,5 +1,9 @@
 import Image, { type ImageProps } from 'next/image'
-import { type MDXComponents } from 'mdx/types'
+import React from 'react'
+
+type MDXComponents = {
+  [key: string]: React.ComponentType<any>
+}
 
 export function useMDXComponents(components: MDXComponents) {
   return {
