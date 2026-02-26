@@ -1,0 +1,144 @@
+import { ArticleLayout } from "@/components/ArticleLayout";
+
+export const article = {
+  author: "Irving Dinh",
+  date: "2026-01-01",
+  title: "A Decade in Software Engineering",
+  description:
+    "Reflecting on ten years of building software, from gaming automation as a kid to identity systems at a Fortune 500, and my next chapter into the hype of AI.",
+};
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+};
+
+export default (props) => <ArticleLayout article={article} {...props} />;
+
+It's New Year's Eve. A few hours ago, I walked out of the company I had called home for three and a half years, my longest stint anywhere. Tomorrow is a blank page. I quit with no job lined up, no grand plan, just a gut feeling that it was time and a curiosity about AI that I couldn't ignore anymore.
+
+So tonight, while the rest of the world is counting down, I'm sitting here reflecting on how I got to this moment. Ten years of building software, six companies, countless late nights, a few spectacular failures, and a handful of things I'm genuinely proud of. I wish I had written all of this down sooner, before the details started to blur. But it is what it is. Better late than never.
+
+This is the story of my career so far.
+
+## Where it all started
+
+My family has been selling coffee in Tra Vinh, a small remote city in southern Vietnam, since 1995. Around 2000, my father decided to turn part of the coffee shop into a "net cafe." It wasn't really connected to any network, just ten PCs in a room where kids from the neighborhood came to play LAN games. I was about seven years old, and that room became my entire world.
+
+The first "programming" I ever did was using Cheat Engine on Diablo 2. I saw an older kid at the cafe using it one day, and I had to figure it out myself. Day after day, I experimented: searching for a health value in memory, narrowing down addresses, changing values to see what happened. Most of the time I had no idea what I was doing. I broke things constantly. My personal computer needed a full OS reinstall almost every week. Eventually, I discovered Norton Ghost for backup and restore, which saved me from the weekly ritual.
+
+Looking back, those Cheat Engine sessions taught me something real. I was learning, without knowing the words for it, how values are stored in memory addresses and how manipulating them changes an application's behavior. How software and hardware work together. Not bad for an eight-year-old who just wanted infinite gold.
+
+Around the same time, maybe even a bit earlier around 1997, I started learning English. My grandmother's and uncle's houses had a Nintendo, and that's where I met Mario, Contra, and Tanks. Everything was in English, so I sat there with a paper dictionary, flipping page by page, translating menus and dialogue. For a kid in a remote Vietnamese city, learning English early turned out to be one of the biggest advantages I ever had.
+
+The net cafe closed around 2002. I still had my own PC, but no LAN to play with friends anymore. Around 2003, I started making trips to the post office, the only place in town with internet access, to play flash games. The hourly rate was expensive, and my dial-up at home was too slow to download anything. It also knocked out my mom's phone line, which she needed for people calling in to order coffee. So I did what any resourceful kid would do: I brought a 1.44MB floppy disc to the post office, downloaded what I could, and carried it home.
+
+Everything changed in 2005. ADSL arrived at our house, and Vo Lam Truyen Ky, a massively popular Vietnamese MMORPG, launched. My father played it too, and my parents were always supportive of my time on the computer. Unlike most kids in my hometown, I had fast internet and family backing to play the game seriously.
+
+That's when gaming led me, again, to programming. We bought an automation tool to train our game characters, but whenever the game updated, it took forever for the tool to catch up. So by late 2006, I started writing my own LUA scripts to do it myself. I learned about automation logic, setting up PCs for long-running tasks, running virtual machines for processes that needed full control of the mouse and keyboard. I was thirteen or fourteen, and I was essentially building bots. That foundation in automation thinking stuck with me for life.
+
+During high school, I kept tinkering. I built a Spotify-like music sharing website for Vietnamese users in ASP (Visual Basic), along with some HTML, CSS, and JavaScript projects. Nothing serious, just things to show off to friends. But the habit of building was already forming.
+
+## University
+
+In 2011, I moved from Tra Vinh to Ho Chi Minh City to study at Van Lang University. The move exposed me to a world of opportunity. Van Lang had a partnership with Carnegie Mellon University at the time, and the program wasn't just about writing code. It covered the full spectrum of software engineering: requirement analysis, design, development, testing, and maintenance.
+
+A few things shaped me deeply during those four years. The testing mindset became second nature. Requirement analysis taught me to ask the right questions before writing a single line of code. But the biggest influence was the architecture design course by Tony Lattanze, the professor who designed the architecture for lunar rover robots. That course planted a seed that grew into one of my strongest skills: thinking about systems at the architecture level before diving into implementation.
+
+## Logigear
+
+During my last semester, I landed an internship at Logigear, one of the well-known testing agencies in Vietnam. I started with mostly manual testing, but I also got to do some automation work with TestArchitect for WinForm applications and Selenium for web automation.
+
+You can probably guess what happened next. With years of gaming automation under my belt, it took no time to get comfortable with the tools, reach peak productivity, and start sharing what I knew. I brought my VM skills to the senior testers and helped them go from running one automation project per PC to running four simultaneously.
+
+I stayed for about a year total, two months as an intern and ten more as an employee. But the ratio of 80% manual testing to 20% automation wasn't for me. I'm a lazy person who thinks obsessively about automation. I couldn't sit still. I needed to create more.
+
+## YouNet Social
+
+I left Logigear on a Friday and started at YouNet Social the following Monday. I just couldn't wait.
+
+YouNet provided operations and customizations for customers hosting their own social networks on platforms like PHPFox and Social Engine. I was working mostly with PHP, but it didn't take long to spot opportunities for improvement. I ended up making three contributions that I'm still proud of.
+
+First, the team had been deploying code by literally dragging files via FTP to customer servers. My university friend and I, both junior developers, introduced Jenkins for automated deployment. It was funny that the tool most associated with DevOps was brought to the company by two juniors who just didn't want to drag files anymore.
+
+Second, both PHPFox and Social Engine used SCSS/LESS as CSS preprocessors, but the PHP-based converter took over ten minutes to process changes. I replaced it with a Node.js-based solution that brought it down to under thirty seconds. The developer experience improved overnight.
+
+Third, with PHP and AJAX, it was painful to build small, interactive features within a page. So I figured out how to integrate Vue.js into PHPFox's pages. It opened up a whole new chapter of possibilities for the team.
+
+I left YouNet after about a year. The pace of technology adoption was slower than I wanted, and I was hungry for bigger challenges in an international environment.
+
+Around this same time, between YouNet and my next role, I worked on a side project with my university best friends that I still look back on fondly: CSGO.vn. A cyber gaming center in Ho Chi Minh City wanted to run Counter-Strike: Global Offensive competitions for the community, and we built the whole platform. Matchmaking, map ban/pick interfaces, all the ceremony of a real competition. The stack was Laravel for the backend, socket.io for real-time interaction, Go running inside the CSGO server, and React.js for the UI.
+
+We even went further and built a near-realtime web page for live events that read the CSGO server logs and displayed a map with all the players' positions, right there on a screen next to the casters. We eventually ran an Asia-wide competition. The project ran out of funding, but it was one of the most fun things I've ever built.
+
+## Sendo
+
+After YouNet, I joined Sendo, one of the biggest e-commerce platforms in Vietnam at the time. Their system had evolved from a Magento monolith into read-and-write services in Go, and was in the middle of migrating to microservices.
+
+I joined the customer management team, which had chosen Node.js. Then the technical lead left, and the team was suddenly short on people and direction. That crisis became my opportunity. After consulting with the engineering manager and some higher-ups, I got permission to restructure all the customer management services. I was a three-year-experience engineer. It was terrifying and exciting in equal measure. I was running before I could walk.
+
+I worked with nearly every technical and business team at Sendo. I helped set up centralized logging and metrics across VMs (we didn't have Kubernetes back then), wrote runbooks for the microservices, and handled cross-team integrations. Flash sale events were intense. One memorable episode involved the Redis network bandwidth between nginx and the session store getting exhausted during a sale. I had written a custom LUA plugin for the nginx gateway (funny how that gaming automation language kept coming back) that checked session headers and embedded basic user information into requests before proxying them, so downstream services didn't need to repeat the lookup. During the sale, the 5Gbps connection wasn't enough, and the sysadmin team had to bump it to 20Gbps. I didn't do the hardware change, but being in the room with the infrastructure team during that crisis was a wonderful experience.
+
+I also built what I do best: internal tools. Multiple services for automating daily development and production tasks, tools for the marketing team to send push notifications without touching the Firebase console, and APIs for the order management, marketing, and event teams. Two years at Sendo, double my previous stints.
+
+On the side, during this period I also started building mobile apps. A few hyper-casual games in Unity that I published on the App Store and Google Play, and some small utility apps. None of them got huge traction, but they taught me something invaluable: UI/UX design. I started thinking like a product designer and product manager, not just an engineer. That shift in perspective helped me enormously in every role that followed.
+
+## Grab
+
+In 2019, I had a chance to join Grab in Ho Chi Minh City. My bestie in Talent Acquisition processed me in, and stepping through those doors was humbling. At Grab, I stopped shining and became a learner again. The office was full of rockstar developers, and I was the one taking notes.
+
+It was uncomfortable at first. I had been the person who drove change at every previous company. Suddenly, I was surrounded by people who were simply better. But I reshaped my thinking and learned to enjoy every single moment of it.
+
+I joined the post-ride team, responsible for cancellation and feedback services. Small team: three engineers, one manager. I didn't do anything groundbreaking at Grab because everything was already so well-built. Instead, I absorbed.
+
+I experienced a monorepo for all Go services for the first time, and it was a revelation. I could understand what any team was doing and learn their logic without asking a single question. I saw what proper CI/CD looks like when a company invests serious money into tooling. I learned how to write correct and useful unit tests, integration tests, and load tests with full tooling support. I saw a deployment platform built in-house with canary deployments, easy rollbacks, and a UI so polished it put most SaaS tools to shame.
+
+But the biggest lesson was GrabKit, Grab's internal Go framework. It was opinionated in all the right ways, and it fundamentally changed how I think about building software. The philosophy is simple: when you're writing new services, you should focus on business logic only. You shouldn't have to think about how to log, how to track metrics, how to load configuration, how to structure files. And it gets worse when you have ten or a hundred services, each doing those things differently.
+
+That framework mindset became core to everything I built afterward, not just in Go, but in how I structure libraries, guidelines, and entire project foundations.
+
+Two years at Grab also gave me a gift I didn't expect: the ability to learn from my own past. I'd look at how a senior engineer solved a problem and think, "Oh, this is how you're supposed to do what I hacked together at Sendo. The difference is this, and it's better because that." Having made the mistakes first made the lessons stick twice as hard.
+
+## Highlands Coffee
+
+After Grab, I wanted a greenfield opportunity where I could apply everything I'd learned. I found it at Highlands Coffee, one of the biggest coffee chains in Vietnam. The mission was to rebuild the integration infrastructure for online food delivery services like Grab, Shopee, and Be Vietnam from scratch. A brand new POS system, built from the ground up with Terraform, CI/CD through Azure DevOps, and my Go framework.
+
+It felt like working at a startup, a small tactical team moving fast, but backed by the resources of a big enterprise.
+
+The most interesting part was that my users were no longer engineers. They were baristas in the middle of a morning rush. My office was on the third floor. One of Highlands' 500+ stores was on the first floor. Every time I went down to grab my coffee, I watched the cashiers use my app. It was the most informal, and maybe the most honest, user research I've ever done.
+
+I had to rethink everything I knew about interfaces. Clean, minimal design wasn't the goal anymore. I needed to learn from how their hands moved, how their eyes shifted between the customer and the screen (or sometimes didn't look at the screen at all), and how they created orders at speed while juggling in-store and online channels.
+
+On the infrastructure side, each store already had a local server to handle offline scenarios when internet went down. I built the new software system on top of that. On the backend, I explored every option to keep connections stable and responsive: server-side rendering, socket.io, bidirectional gRPC. Different screens for the cashier, the barista, the guest display.
+
+There was one thing I never got to finish, and it still bothers me. Stores were managing food delivery orders from Grab, Shopee, and Be Vietnam on three separate phones or tablets, plus their POS device. I wanted to consolidate everything into one screen. I left before I could make it happen, and that unfinished business drove me hard afterward. It pushed me to obsess over how to spin up entire software systems faster. Today, I have personal guidelines and AI agents that can get a full system ready for active development with one command and two hours of waiting.
+
+I spent a year at Highlands. It was a new startup inside a well-established enterprise, and the changes and desires from the top level were many, sometimes misunderstood, sometimes misaligned. I left when I realized I couldn't deliver anything truly helpful under those conditions.
+
+## Axon
+
+In 2022, my TA bestie processed me again, this time into Axon, a Fortune 500 company. I joined the platform identity access management team, responsible for authentication, authorization, session management, and user and organization management. This was my introduction to operating services that needed 99.99% uptime.
+
+The scope of projects was the broadest I'd ever experienced. I built a risk-based authentication system that let users remember their login information, which was critical because my users were mostly US law enforcement officers. I worked on using Axon's body camera as an OTP device instead of relying on SMS, email, or app-based authenticators. I built an internal admin system for customer support. And I designed and implemented advanced user provisioning services: manual importing, Active Directory on-premises sync, and SCIM.
+
+The tech stack was wide: Terraform, Scala, Go, TypeScript across Node.js, React.js, and GitHub Actions. But honestly, most of my time wasn't spent building. It was spent operating.
+
+On-call was a discipline I'm glad I learned, and one that gradually drained me. A full week of light sleep, ready to jump at 3am whenever an alert fired. They fired a lot. Whether it was noise or a real incident, I treated every alert with the same seriousness because of the critical nature of our services. Maintaining runbooks, investigating incidents, coordinating responses, that was the rhythm.
+
+The people at Axon were the best I've worked with, right alongside the teammates at Grab. They had a culture of critical thinking that I've never seen matched anywhere else. They asked question after question until a problem was clear as daylight, and they wouldn't let you proceed until every concern was addressed. It saved me from more bad decisions than I can count.
+
+Three and a half years. My longest stint. But toward the end, the ratio had become 95% operational excellence and 5% building new things. I'm someone who loves to produce, not maintain. I started spending my personal time, stretching to fourteen or sixteen hour days, building AI-powered utility tools to make our workflows smoother and more effective. That's where I introduced a lot of AI into my own process.
+
+I desperately wanted to bring those AI workflows into Axon officially, but it was blocked by policy, resources, and the reality that Axon is a global company with top-tier compliance requirements. I respect that. But I also knew that if I wanted to pursue this direction, I needed to go somewhere else.
+
+So I left. Not because Axon wasn't great. It was. But because I had nothing left to improve there, and there was something out in the world pulling me forward.
+
+## Looking back
+
+I just wish I had documented my career a bit sooner. I think it would have been wonderful and would have helped me a lot today. But I don't regret it. I realized it now, and that's enough.
+
+Ten years, six companies, and a thread that runs through all of it: the same kid who used Cheat Engine on Diablo 2 grew up to build identity systems for law enforcement and POS systems for baristas. The tools changed, the scale changed, but the instinct never did. Find a problem, automate it, make it better, move on to the next one.
+
+I'm currently taking a break and immersing myself full-time in the ocean of possibilities that AI is opening up. After a decade of building for others, I'm building for myself now, chasing the thing that excites me the most.
+
+The journey continues.
