@@ -14,7 +14,7 @@ export function createHeadingLink(Tag: HeadingTag) {
       <Tag id={id} {...rest} className="group">
         <a
           href={`#${id}`}
-          className="no-underline! after:invisible after:ml-2 after:text-zinc-400 after:content-['#'] group-hover:after:visible dark:after:text-zinc-500"
+          className="text-inherit! no-underline! after:invisible after:ml-2 after:text-zinc-400 after:content-['#'] group-hover:after:visible dark:after:text-zinc-500"
         >
           {children}
         </a>
