@@ -1,0 +1,76 @@
+import { ArticleLayout } from "@/components/ArticleLayout";
+
+export const article = {
+  author: "Irving Dinh",
+  date: "2026-02-01",
+  title: "AI as a Thinking Machine",
+  description:
+    "How I use AI agents not just to build, but to think — a structured brainstorming method that helps me clarify ideas, break my own biases, and learn things I didn't know I didn't know.",
+};
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+};
+
+export default (props) => <ArticleLayout article={article} {...props} />;
+
+## Key Takeaway
+
+Let AI agents interview you about your idea — one question at a time — while a subagent keeps a living document in sync. Copy this and go:
+
+> Following https://github.com/irvingdinh/guidelines/blob/main/use-thinking-machine-method.md then help me think about ...
+
+---
+
+I've been using AI tools since the day ChatGPT 3.5 dropped. Like most people, I started by asking it to write code, summarize things, answer questions. But somewhere along the way, the way I use AI shifted. It stopped being a tool that produces output for me and became something closer to a thinking partner. A machine that helps me think.
+
+## The Method
+
+Whenever I need to work through an idea, I start with roughly the same prompt. It doesn't matter what the idea is — a new software project, a feature for an existing codebase, or figuring out what to do for Tet because Lunar New Year is in two weeks and I have no plan. The prompt is the same:
+
+> Please help thinking alongside with me and put my thoughts into BRAINSTORM.md — I want to build a personal expense tracking app. Please help asking me a bunch of questions, one by one, to clarify, explore, and extend my idea. With each of my answers, please spawn a subagent to reread then rewrite the BRAINSTORM.md entirely to reflect my answer into it naturally, just like the answer is a part of the initial idea, not an appendix.
+
+That's it. That's the whole method. I describe what I want in a sentence or two, and then I let the AI interview me.
+
+The AI asks me a question. I answer. It rewrites the document. Then it asks the next question, informed by everything I've said so far. We go back and forth, sometimes for ten rounds, sometimes for fifty. By the end, I have a document that reads like I sat down and wrote a clear, complete description of my idea from scratch. Except I didn't. I talked my way into it.
+
+## One Question at a Time
+
+The key detail that makes this work is "one by one." One question at a time. Not five. Not ten. One.
+
+When I let AI agents ask multiple questions in a single message, the follow-up questions are based on the AI's own assumptions about how I'd answer the earlier ones. Those assumptions might be wrong. They might be hallucinated. And once the AI goes down that path, the whole conversation drifts.
+
+With one question at a time, my answer to each question steers the direction of the next one. The AI can't assume. It has to listen. Every question is grounded in what I actually said, not what the model predicted I'd say.
+
+Yes, it costs more tokens. A lot more. I'm on the $200 Claude Max plan and I feel it. But it's worth every cent, because this process doesn't just help me complete work. It helps me think. And that's invaluable.
+
+## The Living Document
+
+The BRAINSTORM.md file is central to this workflow, and how it gets updated matters more than people might expect.
+
+I don't let the AI append to the file or patch it inline. I ask it to spawn a subagent — a separate process — to reread the entire file and rewrite it from scratch, blending my new answer naturally into the existing content. As if it was always part of the original idea.
+
+The subagent keeps the primary conversation lean. The main thread is where the thinking happens; if the same agent stops to rewrite the file, it eats into the context window. A subagent gets a fresh context, reads the file without conversation baggage, and produces a clean rewrite.
+
+The full rewrite matters for two reasons. First, AI agents lose coherence after roughly 40% of their context window. Waiting until the end of a long conversation to consolidate everything produces a document full of gaps and mistakes. Rewriting with every answer keeps the important information in the file, not in the model's fading memory. Second, without a full rewrite, the AI leaks conversation history into the document. I've seen lines like "Using Nest.js WsAdapter for websocket (not Socket.io as previously mentioned)." In a standalone file, that makes no sense. There is no previous mention. The full rewrite eliminates that entirely.
+
+## You Don't Know What You Don't Know
+
+The most surprising benefit of this method isn't efficiency. It's learning.
+
+When the AI asks me a question, it doesn't just ask. It often provides its own analysis — pros and cons of different approaches, what the industry standards are, what trade-offs exist that I might not have considered. This surfaces things I simply didn't know about. You don't know what you don't know, and this process helps me discover my blind spots so I can learn more about them later.
+
+But it goes further than that. The back-and-forth doesn't just steer the AI out of its biases and hallucinations. It steers me out of mine.
+
+As a human, I tend to stick with what I'm familiar with. A framework I've used before, a library I trust, a pattern I've applied a dozen times. The AI doesn't have that loyalty. Sometimes it asks questions that sound annoyingly obvious at first, almost stupid. But with just a slight shift in thinking, those questions crack open assumptions I didn't realize I was making. They force me to justify my choices instead of defaulting to habit.
+
+That's the real power of this approach. It's not just a brainstorming tool. It's a mirror that reflects my thinking back at me, with all the gaps and biases visible.
+
+## Looking Ahead
+
+This method changed my relationship with AI tools. I stopped treating them as answer machines and started treating them as thinking machines. The answers I get are better, but more importantly, my own understanding of what I'm building, and why, is sharper than it's ever been.
+
+Wanna try? I wrote the whole method as an agent-ready guideline. Copy the prompt below, replace the last part with your idea, and paste it into your AI agent:
+
+> Following https://github.com/irvingdinh/guidelines/blob/main/use-thinking-machine-method.md then help me think about ...
