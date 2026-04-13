@@ -85,8 +85,8 @@ export default function About() {
               Over the past decade, that instinct turned into a career.
               I&apos;ve built e-commerce platforms at Sendo, ride-hailing
               systems at Grab, POS software at Highlands Coffee, and identity
-              infrastructure at Axon. Along the way, I picked up a deep love
-              for system architecture, developer experience, and designing
+              infrastructure at Axon. Along the way, I picked up a deep love for
+              system architecture, developer experience, and designing
               interfaces that real people actually enjoy using.
             </p>
             <p>

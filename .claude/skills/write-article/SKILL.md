@@ -37,13 +37,13 @@ Article body content starts here...
 
 ### Field notes
 
-| Field         | Guidance                                                                 |
-|---------------|--------------------------------------------------------------------------|
-| `author`      | Always `"Irving Dinh"`                                                   |
-| `date`        | ISO format `YYYY-MM-DD`. Use the intended publication date.              |
-| `title`       | Concise, evocative. Sentence case. No trailing period.                   |
-| `description` | 1–2 sentences. This shows in article cards and `<meta>` tags.            |
-| `slug`        | Derived from the directory name. Keep it short and meaningful.           |
+| Field         | Guidance                                                       |
+| ------------- | -------------------------------------------------------------- |
+| `author`      | Always `"Irving Dinh"`                                         |
+| `date`        | ISO format `YYYY-MM-DD`. Use the intended publication date.    |
+| `title`       | Concise, evocative. Sentence case. No trailing period.         |
+| `description` | 1–2 sentences. This shows in article cards and `<meta>` tags.  |
+| `slug`        | Derived from the directory name. Keep it short and meaningful. |
 
 ### Checklist after scaffolding
 
@@ -97,7 +97,7 @@ technical tutorial. Internalize the following patterns.
 
 - Marketing speak, buzzwords, or hype language.
 - Filler conclusions like "In conclusion..." or "To sum up..."
-- Overly technical explanations — keep the reader in the *story*, not the spec.
+- Overly technical explanations — keep the reader in the _story_, not the spec.
 - Generic motivational statements. If it could appear on a LinkedIn inspirational
   post, rewrite it.
 

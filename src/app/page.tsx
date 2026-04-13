@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 
-import { Card } from '@/components/Card'
+import { Card } from "@/components/Card";
 import { Container } from "@/components/Container";
 import {
   GitHubIcon,
@@ -16,7 +16,7 @@ import image3 from "@/images/photos/image-3.jpg";
 import image4 from "@/images/photos/image-4.jpg";
 import image5 from "@/images/photos/image-5.jpg";
 import { type ArticleWithSlug, getAllArticles } from "@/lib/articles";
-import { formatDate } from '@/lib/formatDate'
+import { formatDate } from "@/lib/formatDate";
 
 function Article({ article }: { article: ArticleWithSlug }) {
   return (
@@ -82,7 +82,7 @@ function Photos() {
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 4)
+  let articles = (await getAllArticles()).slice(0, 4);
 
   return (
     <>
