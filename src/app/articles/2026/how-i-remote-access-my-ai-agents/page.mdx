@@ -1,0 +1,68 @@
+import { ArticleLayout } from "@/components/ArticleLayout";
+
+export const article = {
+  author: "Irving Dinh",
+  date: "2026-04-14",
+  title: "How I Remote Access My AI Agents",
+  description:
+    "How I built Porygon-Z, a Slack bot that bridges to Claude Code on my machines, so I can stay in a thinking loop with my AI agents from anywhere — no VPN, no SSH, just a message on my phone.",
+};
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+};
+
+export default (props) => <ArticleLayout article={article} {...props} />;
+
+I love to build, and I love to think about what I build. These two don't always happen at the same desk.
+
+Picture this: I'm lying in bed, and an idea hits me about something I've been working on. I pick up my phone, open Slack, and type a message. A few seconds later, an hourglass emoji appears on my message — my agent picked it up. Then it switches to a spinning icon — Claude Code is now running on my machine at home, reading files, searching through repositories, executing commands. A minute later, the response lands in the thread. Full results. From my bed.
+
+This is my daily routine. Whether I'm out for a walk, on the couch, or spending quality time in the bathroom — I stay in a continuous thinking loop with my AI agents. The tool that makes this possible is called [Porygon-Z](https://github.com/irvingdinh/porygon-z).
+
+## Why Slack
+
+I've been working with AI agents since the day ChatGPT 3.5 dropped. Over the years, I've built up my setup carefully: curated workspaces, hundreds of cloned repositories as a local knowledge base, custom instructions tuned for each project, MCP tools wired into my workflow. All of it lives on my machines at home.
+
+The natural solution for accessing this remotely would be SSH or Tailscale — just tunnel into the machine and use the terminal. But my company's security policy doesn't allow installing Tailscale on corporate devices. And if you've ever tried SSH from a phone, you know how that goes. The screen is too small, the keyboard isn't built for terminal commands, and one wrong keystroke can ruin your session.
+
+Slack, on the other hand, is already on every device I own. It's already approved by corporate IT. The mobile app is polished and familiar. I'm in it all day anyway. So I built a bridge.
+
+## Porygon-Z
+
+Porygon-Z is a Slack bot that connects directly to Claude Code running on your machine. It's not a chatbot — when you send a message in Slack, Porygon-Z passes it to Claude Code, which can read your files, execute commands, search through your repositories, make commits, run tests, use your MCP tools — everything you could do sitting at the terminal.
+
+Each Slack thread maps to a Claude Code session. Reply in the thread and the conversation continues with full context. You fire off a task from your phone, come back ten minutes later, and the results are waiting in the thread.
+
+## Zero inbound ports
+
+The reason this works where SSH and Tailscale don't comes down to one architectural choice: Slack's Socket Mode.
+
+Most remote access solutions require your machine to be reachable from the internet — through port forwarding, a VPN tunnel, or a relay service. All of these need some form of network configuration that corporate security teams tend to block, for good reason.
+
+Socket Mode flips this entirely. My machine initiates an outbound WebSocket connection to Slack's servers. No inbound ports are opened. No public endpoints are exposed. No firewall rules need configuring. From the network's perspective, it looks like any other outbound Slack connection — because it is one.
+
+This single decision — outbound-only connectivity — is the reason Porygon-Z exists. If Tailscale had worked on my corporate machine, I probably would have never built it.
+
+## My machines, my workspaces
+
+I run Porygon-Z on three machines: a Mac Mini, a PC running Ubuntu, and a home server I use for testing production pipeline automation. Each machine runs its own instance of the bot and appears as a separate app in my Slack sidebar.
+
+Every machine has dozens of workspaces — Slack channels, each mapped to a different project with its own working directory, model preference, effort level, and custom instructions. The custom instructions per workspace give me control over how the agent behaves in each context, layered on top of each project's CLAUDE.md. Some channels point to repositories I'm actively developing. One is configured to manage the entire machine itself.
+
+And then there's the one I use as an AI-assisted notebook — a workspace where I can query my personal knowledge base from anywhere, backed by hundreds of curated repositories and documents sitting on my machine. It's not just notes. It's my entire local environment, searchable and reasoned over by an AI agent, accessible from my phone. But that workspace, and the broader story of how I work with AI agents every day, deserves its own post.
+
+## What's next
+
+Porygon-Z is open source. If the workflow I described sounds useful to you:
+
+```
+npx @irvingdinh/porygon-z@latest
+```
+
+You'll need a Slack app with Socket Mode enabled and Claude Code installed on your machine. The rest is in the [repository](https://github.com/irvingdinh/porygon-z).
+
+This post is about the infrastructure — the bridge that connects me to my agents from anywhere. There's a bigger story I want to tell about how I actually work with these agents, the thinking loops, the knowledge systems, the daily workflows I've built around them. That's coming next.
+
+For now, this is how I remote access my AI agents. From the couch, from a walk, from wherever the next idea finds me.
